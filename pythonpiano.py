@@ -67,13 +67,13 @@ def on_press(key):
 
     try:
         if isFlat == True:
-            flat = f'{keymap[key.char]}'
+            flat = f'{keymap[key.char.lower()]}'
             flat = flat[0] + 'b' + flat[1]
             pianomixer.Sound(flat, getattr(notes, flat))
             print(f'{flat} pressed')
         else:
-            pianomixer.Sound(keymap[key.char], getattr(notes, f'{keymap[key.char]}'))
-            print(f'{keymap[key.char]} pressed')
+            pianomixer.Sound(keymap[key.char.lower()], getattr(notes, f'{keymap[key.char.lower()]}'))
+            print(f'{keymap[key.char.lower()]} pressed')
     except Exception as E:
         print(f'special key {key} pressed')
         #print(traceback.format_exc())
@@ -84,7 +84,7 @@ def on_release(key):
     if key == keyboard.Key.shift:
         isFlat = False
     try:
-        print(f'{keymap[key.char]} released')
+        print(f'{keymap[key.char.lower()]} released')
     except Exception as E:
         print(f'special key {key} released')
     if key == keyboard.Key.esc:
